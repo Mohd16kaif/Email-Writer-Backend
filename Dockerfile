@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN ./mvnw clean package -DskipTests
+# Fix permission issue and build
+RUN chmod +x mvnw && ./mvnw clean package -DskipTests
 
 CMD ["java", "-jar", "target/email-reply-generator-0.0.1-SNAPSHOT.jar"]
